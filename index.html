@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f2ec" />
+    <meta name="description" content="A living 3D botanical garden controlled by expressive hand gestures." />
+    <title>FLORA — Bloom in Motion</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="FLORA home"><span class="brand-mark">✳</span><span>FLORA<span class="brand-dot">.</span></span><span class="brand-sub">BOTANICAL INTERFACE</span></a>
+        <div class="top-center"><span class="live-dot"></span><span>AN INTERACTIVE BOTANICAL STUDY</span></div>
+        <div class="top-actions"><button class="text-btn" id="languageBtn">EN / 中</button><button class="icon-btn" id="aboutBtn" aria-label="About FLORA">ⓘ</button></div>
+      </header>
+
+      <main class="workspace">
+        <section class="intro-panel">
+          <div class="eyebrow"><span class="eyebrow-line"></span> GESTURE BOTANICS / 001</div>
+          <h1>Let nature<br/>follow <em>you.</em></h1>
+          <p class="intro-copy">A small movement can change everything. Let your hand shape the quiet rhythm of a living bloom.</p>
+          <div class="intro-controls">
+            <button class="primary-btn" id="startCameraBtn"><span class="camera-icon">◉</span><span id="cameraBtnText">Activate hand tracking</span><span class="btn-arrow">↗</span></button>
+            <p class="privacy-line"><span class="shield">◇</span> Your camera stays on this device. No frames are uploaded.</p>
+          </div>
+          <div class="gesture-hint">
+            <div class="hint-label">TRY A GESTURE</div>
+            <div class="gesture-symbols"><span class="gesture-symbol">✋</span><span class="hint-arrow">→</span><span class="gesture-symbol flower-hint">✿</span></div>
+            <p>Open your hand to unfold the petals. Pinch for precision.</p>
+          </div>
+          <div class="intro-footer"><span>01 — SENSING</span><span>02 — GROWING</span><span>03 — FEELING</span></div>
+        </section>
+
+        <section class="stage" id="stage" aria-label="Interactive three-dimensional flower scene">
+          <div class="stage-topline"><span class="stage-index">LIVE SPECIMEN <b>01</b></span><span class="stage-note"><span class="tiny-sparkle">✧</span> PROCEDURAL 3D / REAL-TIME</span></div>
+          <div class="stage-vignette"></div>
+          <div class="stage-title"><span class="stage-kicker" id="stageKicker">PAEONIA LACTIFLORA</span><h2 id="stageFlowerName">Sarah Bernhardt</h2><p id="stageFlowerCaption">Softness, made visible.</p></div>
+          <div class="stage-metrics"><div class="metric"><span class="metric-label">BLOOM STATE</span><strong id="bloomState">68<span>%</span></strong></div><div class="metric-separator"></div><div class="metric"><span class="metric-label">SPECIMEN NO.</span><strong id="specimenNo">01 <small>/ 06</small></strong></div></div>
+          <div class="axis-cube" title="Use the X/Y/Z controls in the lower dock"><span class="axis-z">Z</span><span class="axis-y">Y</span><span class="axis-x">X</span><i></i></div>
+          <div class="scene-badge"><span class="scene-badge-dot"></span><span id="sceneBadgeText">PORCELAIN STUDIO</span></div>
+          <div class="drag-hint"><span>↔</span> DRAG TO ROTATE</div>
+        </section>
+
+        <aside class="inspector-panel">
+          <div class="panel-head"><span>THE SPECIMEN</span><span class="panel-count">01 / 06</span></div>
+          <div class="specimen-card"><div class="specimen-thumb" id="specimenThumb"><span>✿</span></div><div class="specimen-info"><h3 id="inspectorName">Peony</h3><p id="inspectorLatin">Paeonia lactiflora</p><div class="specimen-tags"><span id="petalTag">Layered petals</span><span id="toneTag">Blush</span></div></div></div>
+          <div class="hairline"></div>
+          <div class="control-heading"><span>GESTURE INPUT</span><span class="input-status" id="inputStatus"><i></i> STANDBY</span></div>
+          <div class="camera-card" id="cameraCard">
+            <video id="cameraFeed" autoplay playsinline muted></video>
+            <canvas id="landmarkCanvas"></canvas>
+            <div class="camera-placeholder" id="cameraPlaceholder"><div class="camera-orbit"><span>◉</span></div><strong>Camera is resting</strong><p>Activate hand tracking to begin.</p></div>
+            <div class="camera-chip" id="cameraChip">LOCAL VISION</div>
+            <div class="camera-fps" id="cameraFps">— FPS</div>
+          </div>
+          <div class="recognition-row"><div><span class="minor-label">RECOGNIZED GESTURE</span><strong id="gestureName">Waiting for input</strong></div><div class="confidence"><strong id="confidenceValue">—</strong><span>CONFIDENCE</span></div></div>
+          <div class="confidence-track"><span id="confidenceBar"></span></div>
+          <p class="camera-message" id="cameraMessage" role="status" aria-live="polite">Camera is off. Manual controls are ready.</p>
+          <section class="gesture-guide" id="gestureGuide" data-guide-state="off" aria-label="Real-time gesture guidance">
+            <div class="gesture-guide-head"><span><i class="guide-live-dot"></i> REAL-TIME HAND GUIDE</span><b id="guideStepBadge">STEP 01 / 03</b></div>
+            <div class="guide-progress" aria-hidden="true"><span id="guideProgress1" class="active"></span><span id="guideProgress2"></span><span id="guideProgress3"></span></div>
+            <div class="guide-main"><div class="guide-symbol" id="guideIcon">◉</div><div class="guide-copy" aria-live="polite"><strong id="guideTitle">Start with your camera</strong><p id="guideText">Activate hand tracking, then allow camera access. Video is analyzed on this device only.</p></div></div>
+            <div class="guide-mini-meter"><div><span id="guideMeterLabel">HAND TRACKING</span><b id="guideMeterValue">READY WHEN YOU ARE</b></div><span class="guide-meter-track"><i id="guideMeterFill"></i></span></div>
+            <div class="gesture-vocabulary" aria-label="Gesture shortcuts"><span data-gesture="Fist"><b>✊</b> Close</span><span data-gesture="Open palm"><b>✋</b> Bloom</span><span data-gesture="V sign"><b>V</b> Scene</span><span data-gesture="Thumb up"><b>👍</b> Pollen</span><span data-gesture="Swipe"><b>↔</b> Flower</span></div>
+          </section>
+          <div class="hairline"></div>
+          <div class="control-heading"><span>CONTROL MODE</span><button class="diag-toggle" id="diagnosticsToggle" type="button" aria-expanded="false">DIAG ↗</button></div>
+          <div class="mode-selector" role="group" aria-label="Gesture control mode"><button data-mode="open" class="mode-btn active">Open palm</button><button data-mode="pinch" class="mode-btn">Pinch</button><button data-mode="shortcuts" class="mode-btn">Shortcuts</button><button data-mode="manual" class="mode-btn">Manual</button></div>
+          <div class="shortcut-summary"><span class="shortcut-icon">✧</span><span id="modeDescription">Move fingers apart to bloom; fold them to close.</span></div>
+          <div class="inspector-actions"><button class="secondary-btn" id="calibrateBtn">◎ Calibrate</button><button class="secondary-btn" id="stopCameraBtn" disabled>Stop camera</button></div>
+          <div class="diagnostics" id="diagnostics"><div><span>Inference latency</span><b id="latencyValue">— ms</b></div><div><span>Raw openness</span><b id="rawOpenValue">—</b></div><div><span>Filtered openness</span><b id="smoothOpenValue">—</b></div><div><span>Handedness</span><b id="handednessValue">—</b></div></div>
+        </aside>
+
+        <section class="bottom-dock">
+          <div class="dock-row gallery-row"><div class="dock-label"><span>01</span><b>FLOWER GALLERY</b><small>Choose your bloom</small></div><div class="flower-gallery" id="flowerGallery"></div><div class="gallery-extra"><button class="small-round" id="particlesBtn" title="Toggle floating pollen">✧</button><span>ATMOSPHERE</span></div></div>
+          <div class="dock-divider"></div>
+          <div class="dock-row controls-row"><div class="dock-label"><span>02</span><b>SPACE & MOTION</b><small>Shape the scene</small></div><div class="environment-control"><label>ENVIRONMENT</label><div class="env-options" id="environmentOptions"><button class="env-btn active" data-env="studio"><i class="env-swatch studio-swatch"></i>Porcelain studio</button><button class="env-btn" data-env="greenhouse"><i class="env-swatch green-swatch"></i>Twilight greenhouse</button><button class="env-btn" data-env="pond"><i class="env-swatch pond-swatch"></i>Moonlit pond</button><button class="env-btn" data-env="meadow"><i class="env-swatch meadow-swatch"></i>Aurora meadow</button></div></div><div class="axis-controls"><label>XYZ ROTATION <button id="resetRotationBtn" title="Reset rotation">↺</button></label><div class="axis-row"><span class="axis-label axis-label-x">X</span><input id="rotateX" type="range" min="-180" max="180" value="-8" aria-label="Rotate around X axis"/><output id="rotateXValue">−8°</output></div><div class="axis-row"><span class="axis-label axis-label-y">Y</span><input id="rotateY" type="range" min="-180" max="180" value="18" aria-label="Rotate around Y axis"/><output id="rotateYValue">18°</output></div><div class="axis-row"><span class="axis-label axis-label-z">Z</span><input id="rotateZ" type="range" min="-180" max="180" value="0" aria-label="Rotate around Z axis"/><output id="rotateZValue">0°</output></div></div><div class="dock-actions"><button class="icon-btn" id="autoRotateBtn" aria-pressed="true" title="Toggle auto rotation">⟳</button><button class="bloom-btn" id="bloomToggleBtn"><span>✺</span><b>Bloom flower</b><span>↗</span></button></div></div>
+          <div class="bottom-status"><span><i class="status-ring"></i> FLORA ENGINE <b>ONLINE</b></span><span>INTERACTION TARGET <b>60 FPS</b></span><span class="splat-note">GAUSSIAN SPLAT ENVIRONMENT <b>OPTIONAL / NOT LOADED</b></span></div>
+        </section>
+      </main>
+
+      <div class="toast" id="toast" role="status"></div>
+      <dialog id="aboutDialog" class="about-dialog"><button class="dialog-close" id="closeAboutBtn">×</button><div class="eyebrow"><span class="eyebrow-line"></span> ABOUT THE EXPERIENCE</div><h2>A living study<br/>in <em>motion.</em></h2><p>FLORA pairs a browser-side MediaPipe hand-landmark model with a procedural Three.js botanical scene. Your camera feed is analyzed locally after you grant permission; frames are not uploaded or stored by this app.</p><p>The flowers are articulated 3D meshes so every petal can move in a controlled way. Real 3D Gaussian Splatting is reserved for optional scanned environment assets; no splat asset is currently loaded, and the flower meshes are not mislabeled as splats.</p><div class="about-detail"><span>ML MODEL</span><b>MediaPipe Hand Landmarker · 21 keypoints</b></div><div class="about-detail"><span>RENDERER</span><b>Three.js · procedural petal geometry</b></div><div class="about-detail"><span>SHORTCUTS</span><b>← → flower · Space bloom · R reset · 1–4 scenes</b></div></dialog>
+      <script type="module" src="/src/main.js"></script>
+    </div>
+  </body>
+</html>
