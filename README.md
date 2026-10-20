@@ -1,5 +1,9 @@
 # FLORA — Bloom in Motion
 
+> **Live website:** [flora-gesture-garden.lovable.app](https://flora-gesture-garden.lovable.app/)
+
+[Open the live garden ↗](https://flora-gesture-garden.lovable.app/)
+
 An interactive 3D botanical experience built with Three.js and MediaPipe Tasks Vision Hand Landmarker. The app runs its hand-landmark model in a dedicated browser worker and sends only landmark measurements to the renderer; it does not upload or store camera frames.
 
 ## Run locally
